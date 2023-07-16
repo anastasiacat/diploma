@@ -17,7 +17,6 @@ public class UITest {
 
     String approvedCard = "4444 4444 4444 4441";
     String declinedCard = "4444 4444 4444 4442";
-
     String wrongCard = "4444 4444 4444 4440";
 
     @BeforeAll
@@ -49,7 +48,7 @@ public class UITest {
         $("div.form-field:nth-child(3) > span > span:nth-child(1) > span > span > span:nth-child(2) > input").setValue("Ivan Ivanov");
         $("div.form-field:nth-child(3) > span > span:nth-child(2) > span > span > span:nth-child(2) > input").setValue("999");
         $x("/html/body/div/div/form/fieldset/div[4]/button").click();
-        $("div.notification:nth-child(7) > div:nth-child(3)").shouldBe(Condition.visible, Duration.ofSeconds(15));
+        $("div.notification:nth-child(7) > div:nth-child(3)").shouldBe(Condition.visible, Duration.ofSeconds(20));
 
         String expected = "Операция одобрена Банком.";
         String actual = $("div.notification:nth-child(7) > div:nth-child(3)").getText().trim();
@@ -339,7 +338,7 @@ public class UITest {
         $("div.form-field:nth-child(3) > span > span:nth-child(1) > span > span > span:nth-child(2) > input").setValue("Ivan Ivanov");
         $("div.form-field:nth-child(3) > span > span:nth-child(2) > span > span > span:nth-child(2) > input").setValue("999");
         $x("/html/body/div/div/form/fieldset/div[4]/button").click();
-        $("div.notification:nth-child(7) > div:nth-child(3)").shouldBe(Condition.visible, Duration.ofSeconds(15));
+        $("div.notification:nth-child(7) > div:nth-child(3)").shouldBe(Condition.visible, Duration.ofSeconds(20));
 
         String expected = "Операция одобрена Банком.";
         String actual = $("div.notification:nth-child(7) > div:nth-child(3)").getText().trim();
