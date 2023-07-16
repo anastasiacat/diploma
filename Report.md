@@ -1,14 +1,13 @@
 # Отчётные документы по итогам тестирования
 ## Краткое описание:
-Составлен [план](https://github.com/anastasiacat/diploma/blob/main/Plan.md) чтобы протестировать функции приложения для оплаты тура.
-Проведена работа по автоматизации тестирования этого приложения.
-Были написаны позитивные и негативные UI-тесты и тесты для проверки записей в базе данных.
+Составлен [план](https://github.com/anastasiacat/diploma/blob/main/Plan.md) чтобы протестировать функции [приложения для оплаты тура](https://github.com/netology-code/qa-diploma#бизнес-часть). Проведена работа по автоматизации тестирования этого приложения. Были написаны позитивные и негативные [UI-тесты](https://github.com/anastasiacat/diploma/blob/main/src/test/java/UITest.java) и [API-тесты](https://github.com/anastasiacat/diploma/blob/main/src/test/java/APITest.java) с использованием баз данных MySQL и PostgreSQL.
 ## Тест-кейсы
-- Всего: 38 тест-кейсов
-- Успешные: 24 (63,15%)
-- Неуспешные: 14 (36,85%)
+- Всего: 46 тест-кейсов
+- Успешные: 32 (69,56%)
+- Неуспешные: 14 (30,44%)
 
-![изображение](https://github.com/anastasiacat/diploma/assets/119497966/c7fe9bbe-1e53-4f40-95bf-5940f4fe387a)
+![изображение](https://github.com/anastasiacat/diploma/assets/119497966/0eca2522-4756-4110-9e38-b2b41ac1449f)
+
 ## Найденные баги
 1. [При вводе данных неактивной карты (DECLINE) совершается операция покупки](https://github.com/anastasiacat/diploma/issues/1)
 2. [При вводе данных неизвестной карты появляются два сообщения: об ошибке и об успешной операции](https://github.com/anastasiacat/diploma/issues/2)
