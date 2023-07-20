@@ -1,9 +1,12 @@
+package data;
+
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import lombok.SneakyThrows;
 
 public class SQLHelper {
     private static QueryRunner runner = new QueryRunner();
@@ -25,25 +28,31 @@ public class SQLHelper {
         runner.update(conn, "DELETE FROM order_entity;");
     }
 
+    @SneakyThrows
     public static Long getRecordsCountFromOrderEntity() {
         var countSQL = "SELECT COUNT(*) FROM order_entity";
-        try (var conn = getConn()) {
+        var conn = getConn();
+        return runner.query(conn, countSQL, new ScalarHandler<Long>());
+        /*try (var conn = getConn()) {
             var number = runner.query(conn, countSQL, new ScalarHandler<Long>());
             return number;
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
-        return null;
+        return null;*/
     }
 
+    @SneakyThrows
     public static Long getRecordsCountFromPaymentEntity() {
         var countSQL = "SELECT COUNT(*) FROM payment_entity";
-        try (var conn = getConn()) {
+        var conn = getConn();
+        return runner.query(conn, countSQL, new ScalarHandler<Long>());
+        /*try (var conn = getConn()) {
             var number = runner.query(conn, countSQL, new ScalarHandler<Long>());
             return number;
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
-        return null;
+        return null;*/
     }
 }

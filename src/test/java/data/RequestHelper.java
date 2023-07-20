@@ -1,3 +1,5 @@
+package data;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -5,7 +7,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class RequestHelper {
-    public static HttpResponse<String> PostRequestPayment(String number, String year, String month, String holder, String cvc) throws IOException, InterruptedException {
+    public static HttpResponse<String> postRequestPayment(String number, String year, String month, String holder, String cvc) throws IOException, InterruptedException {
         String requestBody = "{\"number\":\"" + number + "\",\"year\":" + year + ",\"month\":" + month + ",\"holder\":\"" + holder + "\",\"cvc\":" + cvc + "}";
 
         HttpClient client = HttpClient.newHttpClient();
@@ -21,7 +23,7 @@ public class RequestHelper {
         return response;
     }
 
-    public static HttpResponse<String> PostRequestCredit(String number, String year, String month, String holder, String cvc) throws IOException, InterruptedException {
+    public static HttpResponse<String> postRequestCredit(String number, String year, String month, String holder, String cvc) throws IOException, InterruptedException {
         String requestBody = "{\"number\":\"" + number + "\",\"year\":" + year + ",\"month\":" + month + ",\"holder\":\"" + holder + "\",\"cvc\":" + cvc + "}";
 
         HttpClient client = HttpClient.newHttpClient();

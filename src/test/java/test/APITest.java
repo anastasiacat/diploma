@@ -1,14 +1,11 @@
-import com.codeborne.selenide.Condition;
+package test;
+
 import com.codeborne.selenide.logevents.SelenideLogger;
+import data.RequestHelper;
+import data.SQLHelper;
 import io.qameta.allure.selenide.AllureSelenide;
-import org.junit.jupiter.api.*;;
-
-import java.io.IOException;
-import java.sql.SQLException;
-import java.time.Duration;
-
-import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Selenide.$;
+import lombok.SneakyThrows;
+import org.junit.jupiter.api.*;
 
 public class APITest {
 
@@ -16,7 +13,6 @@ public class APITest {
     String declined = "{\"status\":\"DECLINED\"}";
     String approvedCard = "4444 4444 4444 4441";
     String declinedCard = "4444 4444 4444 4442";
-
     String wrongCard = "4444 4444 4444 4440";
 
     @BeforeAll
@@ -29,65 +25,72 @@ public class APITest {
         SelenideLogger.removeListener("allure");
     }
 
+    @SneakyThrows
     @Test
-    void checkRequestDatabaseInPaymentByApprovedCard() throws IOException, InterruptedException {
-        var response = RequestHelper.PostRequestPayment(approvedCard, "24", "10", "Ivan Ivanov", "999");
+    void checkRequestDatabaseInPaymentByApprovedCard() {
+        var response = RequestHelper.postRequestPayment(approvedCard, "24", "10", "Ivan Ivanov", "999");
 
         String expected = approved;
         String actual = response.body();
         Assertions.assertEquals(expected, actual);
     }
 
+    @SneakyThrows
     @Test
-    void checkRequestDatabaseInPaymentByDeclinedCard() throws IOException, InterruptedException {
-        var response = RequestHelper.PostRequestPayment(declinedCard, "24", "10", "Ivan Ivanov", "999");
+    void checkRequestDatabaseInPaymentByDeclinedCard() {
+        var response = RequestHelper.postRequestPayment(declinedCard, "24", "10", "Ivan Ivanov", "999");
 
         String expected = declined;
         String actual = response.body();
         Assertions.assertEquals(expected, actual);
     }
 
+    @SneakyThrows
     @Test
-    void checkRequestDatabaseInPaymentByWrongCard() throws IOException, InterruptedException {
-        var response = RequestHelper.PostRequestPayment(wrongCard, "24", "10", "Ivan Ivanov", "999");
+    void checkRequestDatabaseInPaymentByWrongCard() {
+        var response = RequestHelper.postRequestPayment(wrongCard, "24", "10", "Ivan Ivanov", "999");
 
         boolean expectedBadRequest = true;
         boolean actual = response.body().contains("Bad Request");
         Assertions.assertEquals(expectedBadRequest, actual);
     }
 
+    @SneakyThrows
     @Test
-    void checkRequestDatabaseInCreditByApprovedCard() throws IOException, InterruptedException {
-        var response = RequestHelper.PostRequestCredit(approvedCard, "24", "10", "Ivan Ivanov", "999");
+    void checkRequestDatabaseInCreditByApprovedCard() {
+        var response = RequestHelper.postRequestCredit(approvedCard, "24", "10", "Ivan Ivanov", "999");
 
         String expected = approved;
         String actual = response.body();
         Assertions.assertEquals(expected, actual);
     }
 
+    @SneakyThrows
     @Test
-    void checkRequestDatabaseInCreditByDeclinedCard() throws IOException, InterruptedException {
-        var response = RequestHelper.PostRequestCredit(declinedCard, "24", "10", "Ivan Ivanov", "999");
+    void checkRequestDatabaseInCreditByDeclinedCard() {
+        var response = RequestHelper.postRequestCredit(declinedCard, "24", "10", "Ivan Ivanov", "999");
 
         String expected = declined;
         String actual = response.body();
         Assertions.assertEquals(expected, actual);
     }
 
+    @SneakyThrows
     @Test
-    void checkRequestDatabaseInCreditByWrongCard() throws IOException, InterruptedException {
-        var response = RequestHelper.PostRequestCredit(wrongCard, "24", "10", "Ivan Ivanov", "999");
+    void checkRequestDatabaseInCreditByWrongCard() {
+        var response = RequestHelper.postRequestCredit(wrongCard, "24", "10", "Ivan Ivanov", "999");
 
         boolean expectedBadRequest = true;
         boolean actual = response.body().contains("Bad Request");
         Assertions.assertEquals(expectedBadRequest, actual);
     }
 
+    @SneakyThrows
     @Test
-    void checkRecordsInDatabaseInPayment() throws IOException, InterruptedException {
+    void checkRecordsInDatabaseInPayment() {
         long countPaymentStart = SQLHelper.getRecordsCountFromPaymentEntity();
 
-        RequestHelper.PostRequestPayment(approvedCard, "24", "10", "Ivan Ivanov", "999");
+        RequestHelper.postRequestPayment(approvedCard, "24", "10", "Ivan Ivanov", "999");
 
         long countPaymentEnd = SQLHelper.getRecordsCountFromPaymentEntity();
 
@@ -96,11 +99,12 @@ public class APITest {
         Assertions.assertEquals(expected, actual);
     }
 
+    @SneakyThrows
     @Test
-    void checkRecordsInDatabaseInCredit() throws IOException, InterruptedException {
+    void checkRecordsInDatabaseInCredit() {
         long countCreditStart = SQLHelper.getRecordsCountFromOrderEntity();
 
-        RequestHelper.PostRequestCredit(approvedCard, "24", "10", "Ivan Ivanov", "999");
+        RequestHelper.postRequestCredit(approvedCard, "24", "10", "Ivan Ivanov", "999");
 
         long countCreditEnd = SQLHelper.getRecordsCountFromOrderEntity();
 
