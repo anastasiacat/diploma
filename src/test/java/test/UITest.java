@@ -46,7 +46,6 @@ public class UITest {
         formPage.setCardOwner(DataGenerator.generateName());
         formPage.setCardCVC(DataGenerator.generateCVC());
         formPage.pushContinueButton();
-        //formPage.checkSuccessMsg();
         formPage.waitingForMessage();
 
         String expected = "Операция одобрена Банком.";
@@ -63,7 +62,6 @@ public class UITest {
         formPage.setCardOwner(DataGenerator.generateName());
         formPage.setCardCVC(DataGenerator.generateCVC());
         formPage.pushContinueButton();
-        //formPage.checkErrorMsg();
         formPage.waitingForMessage();
 
         String expected = "Ошибка! Банк отказал в проведении операции.";
@@ -80,7 +78,6 @@ public class UITest {
         formPage.setCardOwner(DataGenerator.generateName());
         formPage.setCardCVC(DataGenerator.generateCVC());
         formPage.pushContinueButton();
-        //formPage.checkWrongFormatMsg();
 
         String expected = "Неверный формат";
         String actual = formPage.actualErrorMessage();
@@ -96,9 +93,7 @@ public class UITest {
         formPage.setCardOwner(DataGenerator.generateName());
         formPage.setCardCVC(DataGenerator.generateCVC());
         formPage.pushContinueButton();
-        //formPage.checkErrorMsg();
         formPage.waitingForMessage();
-        //Должен падать
 
         String expected = "Ошибка! Банк отказал в проведении операции.";
         String actual = formPage.actualMessage();
@@ -114,7 +109,6 @@ public class UITest {
         formPage.setCardOwner(DataGenerator.generateName());
         formPage.setCardCVC(DataGenerator.generateCVC());
         formPage.pushContinueButton();
-        //formPage.checkWrongDateMsg();
 
         String expected = "Неверно указан срок действия карты";
         String actual = formPage.actualErrorMessage();
@@ -131,7 +125,6 @@ public class UITest {
         formPage.setCardOwner(DataGenerator.generateName());
         formPage.setCardCVC(DataGenerator.generateCVC());
         formPage.pushContinueButton();
-        //formPage.checkExpiredCardDateMsg();
 
         String expected = "Истёк срок действия карты";
         String actual = formPage.actualErrorMessage();
@@ -147,7 +140,6 @@ public class UITest {
         formPage.setCardOwner(DataGenerator.generateNameWithoutSurname());
         formPage.setCardCVC(DataGenerator.generateCVC());
         formPage.pushContinueButton();
-        //formPage.checkWrongFormatMsg();
 
         String expected = "Неверный формат";
         String actual = formPage.actualErrorMessage();
@@ -163,7 +155,6 @@ public class UITest {
         formPage.setCardOwner(DataGenerator.generateNameWithOneCharacter());
         formPage.setCardCVC(DataGenerator.generateCVC());
         formPage.pushContinueButton();
-        //formPage.checkWrongFormatMsg();
 
         String expected = "Неверный формат";
         String actual = formPage.actualErrorMessage();
@@ -179,7 +170,6 @@ public class UITest {
         formPage.setCardOwner(DataGenerator.generateNameWithNumbers());
         formPage.setCardCVC(DataGenerator.generateCVC());
         formPage.pushContinueButton();
-        //formPage.checkWrongFormatMsg();
 
         String expected = "Неверный формат";
         String actual = formPage.actualErrorMessage();
@@ -195,7 +185,6 @@ public class UITest {
         formPage.setCardOwner(DataGenerator.generateNameWithSpecialSymbols());
         formPage.setCardCVC(DataGenerator.generateCVC());
         formPage.pushContinueButton();
-        //formPage.checkWrongFormatMsg();
 
         String expected = "Неверный формат";
         String actual = formPage.actualErrorMessage();
@@ -211,7 +200,6 @@ public class UITest {
         formPage.setCardOwner(DataGenerator.generateNameInRussian());
         formPage.setCardCVC(DataGenerator.generateCVC());
         formPage.pushContinueButton();
-        //formPage.checkSuccessMsg();
         formPage.waitingForMessage();
 
         String expected = "Операция одобрена Банком.";
@@ -228,7 +216,6 @@ public class UITest {
         formPage.setCardOwner(DataGenerator.generateName());
         formPage.setCardCVC(DataGenerator.generateWrongCVC());
         formPage.pushContinueButton();
-        //formPage.checkWrongFormatMsg();
 
         String expected = "Неверный формат";
         String actual = formPage.actualErrorMessage();
@@ -239,7 +226,6 @@ public class UITest {
     void shouldTestAllEmptyFieldsInPayment() {
         formPage.buyOnPayment();
         formPage.pushContinueButton();
-        //formPage.checkWrongFormatMsg();
 
         String expected = "Неверный формат";
         String actual = formPage.actualErrorMessage();
@@ -254,7 +240,6 @@ public class UITest {
         formPage.setCardOwner(DataGenerator.generateName());
         formPage.setCardCVC(DataGenerator.generateCVC());
         formPage.pushContinueButton();
-        //formPage.checkWrongFormatMsg();
 
         String expected = "Неверный формат";
         String actual = formPage.actualErrorMessage();
@@ -269,7 +254,6 @@ public class UITest {
         formPage.setCardOwner(DataGenerator.generateName());
         formPage.setCardCVC(DataGenerator.generateCVC());
         formPage.pushContinueButton();
-        //formPage.checkWrongFormatMsg();
 
         String expected = "Неверный формат";
         String actual = formPage.actualErrorMessage();
@@ -284,7 +268,6 @@ public class UITest {
         formPage.setCardOwner(DataGenerator.generateName());
         formPage.setCardCVC(DataGenerator.generateCVC());
         formPage.pushContinueButton();
-        //formPage.checkWrongFormatMsg();
 
         String expected = "Неверный формат";
         String actual = formPage.actualErrorMessage();
@@ -299,7 +282,6 @@ public class UITest {
         formPage.setCardYear(DataGenerator.generateYear());
         formPage.setCardCVC(DataGenerator.generateCVC());
         formPage.pushContinueButton();
-        //formPage.checkRequiredFieldMsg();
 
         String expected = "Поле обязательно для заполнения";
         String actual = formPage.actualErrorMessage();
@@ -314,7 +296,6 @@ public class UITest {
         formPage.setCardYear(DataGenerator.generateYear());
         formPage.setCardOwner(DataGenerator.generateName());
         formPage.pushContinueButton();
-        //formPage.checkRequiredFieldMsg();
 
         String expected = "Неверный формат";
         String actual = formPage.actualErrorMessage();
@@ -332,7 +313,6 @@ public class UITest {
         formPage.setCardOwner(DataGenerator.generateName());
         formPage.setCardCVC(DataGenerator.generateCVC());
         formPage.pushContinueButton();
-        //formPage.checkSuccessMsg();
         formPage.waitingForMessage();
 
         long countPaymentEnd = SQLHelper.getRecordsCountFromPaymentEntity();
@@ -351,7 +331,6 @@ public class UITest {
         formPage.setCardOwner(DataGenerator.generateName());
         formPage.setCardCVC(DataGenerator.generateCVC());
         formPage.pushContinueButton();
-        //formPage.checkSuccessMsg();
         formPage.waitingForMessage();
 
         String expected = "Операция одобрена Банком.";
@@ -369,7 +348,6 @@ public class UITest {
         formPage.setCardOwner(DataGenerator.generateName());
         formPage.setCardCVC(DataGenerator.generateCVC());
         formPage.pushContinueButton();
-        //formPage.checkErrorMsg();
         formPage.waitingForMessage();
 
         String expected = "Ошибка! Банк отказал в проведении операции.";
@@ -387,7 +365,6 @@ public class UITest {
         formPage.setCardOwner(DataGenerator.generateName());
         formPage.setCardCVC(DataGenerator.generateCVC());
         formPage.pushContinueButton();
-        //formPage.checkWrongFormatMsg();
 
         String expected = "Неверный формат";
         String actual = formPage.actualErrorMessage();
@@ -403,9 +380,7 @@ public class UITest {
         formPage.setCardOwner(DataGenerator.generateName());
         formPage.setCardCVC(DataGenerator.generateCVC());
         formPage.pushContinueButton();
-        //formPage.checkErrorMsg();
         formPage.waitingForMessage();
-        //Должен падать
 
         String expected = "Ошибка! Банк отказал в проведении операции.";
         String actual = formPage.actualMessage();
@@ -422,7 +397,6 @@ public class UITest {
         formPage.setCardOwner(DataGenerator.generateName());
         formPage.setCardCVC(DataGenerator.generateCVC());
         formPage.pushContinueButton();
-        //formPage.checkWrongDateMsg();
 
         String expected = "Неверно указан срок действия карты";
         String actual = formPage.actualErrorMessage();
@@ -438,7 +412,6 @@ public class UITest {
         formPage.setCardOwner(DataGenerator.generateName());
         formPage.setCardCVC(DataGenerator.generateCVC());
         formPage.pushContinueButton();
-        //formPage.checkExpiredCardDateMsg();
 
         String expected = "Истёк срок действия карты";
         String actual = formPage.actualErrorMessage();
@@ -454,7 +427,6 @@ public class UITest {
         formPage.setCardOwner(DataGenerator.generateNameWithoutSurname());
         formPage.setCardCVC(DataGenerator.generateCVC());
         formPage.pushContinueButton();
-        //formPage.checkWrongFormatMsg();
 
         String expected = "Неверный формат";
         String actual = formPage.actualErrorMessage();
@@ -470,7 +442,6 @@ public class UITest {
         formPage.setCardOwner(DataGenerator.generateNameWithOneCharacter());
         formPage.setCardCVC(DataGenerator.generateCVC());
         formPage.pushContinueButton();
-        //formPage.checkWrongFormatMsg();
 
         String expected = "Неверный формат";
         String actual = formPage.actualErrorMessage();
@@ -486,7 +457,6 @@ public class UITest {
         formPage.setCardOwner(DataGenerator.generateNameWithNumbers());
         formPage.setCardCVC(DataGenerator.generateCVC());
         formPage.pushContinueButton();
-        //formPage.checkWrongFormatMsg();
 
         String expected = "Неверный формат";
         String actual = formPage.actualErrorMessage();
@@ -502,7 +472,6 @@ public class UITest {
         formPage.setCardOwner(DataGenerator.generateNameWithSpecialSymbols());
         formPage.setCardCVC(DataGenerator.generateCVC());
         formPage.pushContinueButton();
-        //formPage.checkWrongFormatMsg();
 
         String expected = "Неверный формат";
         String actual = formPage.actualErrorMessage();
@@ -519,7 +488,6 @@ public class UITest {
         formPage.setCardCVC(DataGenerator.generateNameInRussian());
         formPage.setCardCVC(DataGenerator.generateCVC());
         formPage.pushContinueButton();
-        //formPage.checkSuccessMsg();
         formPage.waitingForMessage();
 
         String expected = "Операция одобрена Банком.";
@@ -537,8 +505,6 @@ public class UITest {
         formPage.setCardOwner(DataGenerator.generateName());
         formPage.setCardCVC(DataGenerator.generateWrongCVC());
         formPage.pushContinueButton();
-        //formPage.checkWrongFormatMsg();
-        //Должен падать
 
         String expected = "Неверный формат";
         String actual = formPage.actualErrorMessage();
@@ -549,7 +515,6 @@ public class UITest {
     void shouldTestAllEmptyFieldsInCredit() {
         formPage.buyOnCredit();
         formPage.pushContinueButton();
-        //formPage.checkWrongFormatMsg();
 
         String expected = "Неверный формат";
         String actual = formPage.actualErrorMessage();
@@ -564,7 +529,6 @@ public class UITest {
         formPage.setCardOwner(DataGenerator.generateName());
         formPage.setCardCVC(DataGenerator.generateCVC());
         formPage.pushContinueButton();
-        //formPage.checkWrongFormatMsg();
 
         String expected = "Неверный формат";
         String actual = formPage.actualErrorMessage();
@@ -579,7 +543,6 @@ public class UITest {
         formPage.setCardOwner(DataGenerator.generateName());
         formPage.setCardCVC(DataGenerator.generateCVC());
         formPage.pushContinueButton();
-        //formPage.checkWrongFormatMsg();
 
         String expected = "Неверный формат";
         String actual = formPage.actualErrorMessage();
@@ -594,7 +557,6 @@ public class UITest {
         formPage.setCardOwner(DataGenerator.generateName());
         formPage.setCardCVC(DataGenerator.generateCVC());
         formPage.pushContinueButton();
-        //formPage.checkWrongFormatMsg();
 
         String expected = "Неверный формат";
         String actual = formPage.actualErrorMessage();
@@ -609,7 +571,6 @@ public class UITest {
         formPage.setCardYear(DataGenerator.generateYear());
         formPage.setCardCVC(DataGenerator.generateCVC());
         formPage.pushContinueButton();
-        //formPage.checkRequiredFieldMsg();
 
         String expected = "Поле обязательно для заполнения";
         String actual = formPage.actualErrorMessage();
@@ -624,8 +585,6 @@ public class UITest {
         formPage.setCardYear(DataGenerator.generateYear());
         formPage.setCardOwner(DataGenerator.generateName());
         formPage.pushContinueButton();
-        //formPage.checkWrongFormatMsg();
-        //Должен падать
 
         String expected = "Неверный формат";
         String actual = formPage.actualErrorMessage();
@@ -643,7 +602,6 @@ public class UITest {
         formPage.setCardOwner(DataGenerator.generateName());
         formPage.setCardCVC(DataGenerator.generateCVC());
         formPage.pushContinueButton();
-        //formPage.checkSuccessMsg();
         formPage.waitingForMessage();
 
         long countCreditEnd = SQLHelper.getRecordsCountFromOrderEntity();

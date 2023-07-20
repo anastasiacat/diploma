@@ -12,6 +12,7 @@ public class FormPage {
         open("http://localhost:8080/");
         $x("/html/body/div/div/button[1]").click();
     }
+
     public void buyOnCredit() {
         open("http://localhost:8080/");
         $x("/html/body/div/div/button[2]").click();

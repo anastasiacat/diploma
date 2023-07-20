@@ -5,6 +5,7 @@ import java.util.Random;
 public class DataGenerator {
     private DataGenerator() {
     }
+
     public static String generateWrongCard() {
         var card = new String[]{"4444 4444 4444 4440", "4444 4444 4444 4443", "4444 4444 4444 4444", "4444 4444 4444 4445", "4444 4444 4444 4446",
                 "4444 4444 4444 4447", "4444 4444 4444 4448", "4444 4444 4444 4449"};
@@ -25,7 +26,7 @@ public class DataGenerator {
     }
 
     public static String generateNameWithOneCharacter() {
-        var name = new String[]{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L","M", "N", "O", "P", "Q", "R", "S", "T", "U",
+        var name = new String[]{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U",
                 "V", "W", "X", "Y", "Z"};
         return name[new Random().nextInt(name.length)];
     }
