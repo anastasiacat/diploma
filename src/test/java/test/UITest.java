@@ -4,16 +4,11 @@ import com.codeborne.selenide.logevents.SelenideLogger;
 import data.DataGenerator;
 import data.SQLHelper;
 import page.FormPage;
-import lombok.SneakyThrows;
 import org.junit.jupiter.api.*;
 
 import io.qameta.allure.selenide.AllureSelenide;
 
 public class UITest {
-
-    String approvedCard = "4444 4444 4444 4441";
-    String declinedCard = "4444 4444 4444 4442";
-    String wrongCard = "4444 4444 4444 4440";
     private FormPage formPage;
 
     @BeforeAll
@@ -31,7 +26,6 @@ public class UITest {
         formPage = new FormPage();
     }
 
-    @SneakyThrows
     @AfterEach
     void clearAll() {
         SQLHelper.clearData();
@@ -40,7 +34,7 @@ public class UITest {
     @Test
     void shouldTestBePassedInPaymentByApprovedCard() {
         formPage.buyOnPayment();
-        formPage.setCard(approvedCard);
+        formPage.setCard(DataGenerator.generateApprovedCard());
         formPage.setCardMonth(DataGenerator.generateMonth());
         formPage.setCardYear(DataGenerator.generateYear());
         formPage.setCardOwner(DataGenerator.generateName());
@@ -56,7 +50,7 @@ public class UITest {
     @Test
     void shouldTestBeFailedInPaymentByDeclinedCard() {
         formPage.buyOnPayment();
-        formPage.setCard(declinedCard);
+        formPage.setCard(DataGenerator.generateDeclinedCard());
         formPage.setCardMonth(DataGenerator.generateMonth());
         formPage.setCardYear(DataGenerator.generateYear());
         formPage.setCardOwner(DataGenerator.generateName());
@@ -72,7 +66,7 @@ public class UITest {
     @Test
     void shouldTestWrongCardNumberInPayment() {
         formPage.buyOnPayment();
-        formPage.setWrongCardNumber(approvedCard);
+        formPage.setWrongCardNumber(DataGenerator.generateApprovedCard());
         formPage.setCardMonth(DataGenerator.generateMonth());
         formPage.setCardYear(DataGenerator.generateYear());
         formPage.setCardOwner(DataGenerator.generateName());
@@ -87,7 +81,7 @@ public class UITest {
     @Test
     void shouldTestWrongCardInPayment() {
         formPage.buyOnPayment();
-        formPage.setCard(wrongCard);
+        formPage.setCard(DataGenerator.generateWrongCard());
         formPage.setCardMonth(DataGenerator.generateMonth());
         formPage.setCardYear(DataGenerator.generateYear());
         formPage.setCardOwner(DataGenerator.generateName());
@@ -103,7 +97,7 @@ public class UITest {
     @Test
     void shouldTestWrongCardMonthDateInPayment() {
         formPage.buyOnPayment();
-        formPage.setCard(approvedCard);
+        formPage.setCard(DataGenerator.generateApprovedCard());
         formPage.setCardMonth(DataGenerator.generateWrongMonth());
         formPage.setCardYear(DataGenerator.generateCurrentYear());
         formPage.setCardOwner(DataGenerator.generateName());
@@ -117,9 +111,8 @@ public class UITest {
 
     @Test
     void shouldTestWrongCardYearDateInPayment() {
-
         formPage.buyOnPayment();
-        formPage.setCard(approvedCard);
+        formPage.setCard(DataGenerator.generateApprovedCard());
         formPage.setCardMonth(DataGenerator.generateMonth());
         formPage.setCardYear(DataGenerator.generateWrongYear());
         formPage.setCardOwner(DataGenerator.generateName());
@@ -134,7 +127,7 @@ public class UITest {
     @Test
     void shouldTestNameWithoutSurnameInPayment() {
         formPage.buyOnPayment();
-        formPage.setCard(approvedCard);
+        formPage.setCard(DataGenerator.generateApprovedCard());
         formPage.setCardMonth(DataGenerator.generateMonth());
         formPage.setCardYear(DataGenerator.generateYear());
         formPage.setCardOwner(DataGenerator.generateNameWithoutSurname());
@@ -149,7 +142,7 @@ public class UITest {
     @Test
     void shouldTestNameWithOneCharacterInPayment() {
         formPage.buyOnPayment();
-        formPage.setCard(approvedCard);
+        formPage.setCard(DataGenerator.generateApprovedCard());
         formPage.setCardMonth(DataGenerator.generateMonth());
         formPage.setCardYear(DataGenerator.generateYear());
         formPage.setCardOwner(DataGenerator.generateNameWithOneCharacter());
@@ -164,7 +157,7 @@ public class UITest {
     @Test
     void shouldTestNameWithNumbersInPayment() {
         formPage.buyOnPayment();
-        formPage.setCard(approvedCard);
+        formPage.setCard(DataGenerator.generateApprovedCard());
         formPage.setCardMonth(DataGenerator.generateMonth());
         formPage.setCardYear(DataGenerator.generateYear());
         formPage.setCardOwner(DataGenerator.generateNameWithNumbers());
@@ -179,7 +172,7 @@ public class UITest {
     @Test
     void shouldTestNameWithSpecialSymbolsInPayment() {
         formPage.buyOnPayment();
-        formPage.setCard(approvedCard);
+        formPage.setCard(DataGenerator.generateApprovedCard());
         formPage.setCardMonth(DataGenerator.generateMonth());
         formPage.setCardYear(DataGenerator.generateYear());
         formPage.setCardOwner(DataGenerator.generateNameWithSpecialSymbols());
@@ -194,7 +187,7 @@ public class UITest {
     @Test
     void shouldTestNameInRussianInPayment() {
         formPage.buyOnPayment();
-        formPage.setCard(approvedCard);
+        formPage.setCard(DataGenerator.generateApprovedCard());
         formPage.setCardMonth(DataGenerator.generateMonth());
         formPage.setCardYear(DataGenerator.generateYear());
         formPage.setCardOwner(DataGenerator.generateNameInRussian());
@@ -210,7 +203,7 @@ public class UITest {
     @Test
     void shouldTestWrongCVCInPayment() {
         formPage.buyOnPayment();
-        formPage.setCard(approvedCard);
+        formPage.setCard(DataGenerator.generateApprovedCard());
         formPage.setCardMonth(DataGenerator.generateMonth());
         formPage.setCardYear(DataGenerator.generateYear());
         formPage.setCardOwner(DataGenerator.generateName());
@@ -249,7 +242,7 @@ public class UITest {
     @Test
     void shouldTestEmptyCardMonthDateInPayment() {
         formPage.buyOnPayment();
-        formPage.setCard(approvedCard);
+        formPage.setCard(DataGenerator.generateApprovedCard());
         formPage.setCardYear(DataGenerator.generateYear());
         formPage.setCardOwner(DataGenerator.generateName());
         formPage.setCardCVC(DataGenerator.generateCVC());
@@ -263,7 +256,7 @@ public class UITest {
     @Test
     void shouldTestEmptyCardYearDateInPayment() {
         formPage.buyOnPayment();
-        formPage.setCard(approvedCard);
+        formPage.setCard(DataGenerator.generateApprovedCard());
         formPage.setCardMonth(DataGenerator.generateMonth());
         formPage.setCardOwner(DataGenerator.generateName());
         formPage.setCardCVC(DataGenerator.generateCVC());
@@ -277,7 +270,7 @@ public class UITest {
     @Test
     void shouldTestEmptyNameInPayment() {
         formPage.buyOnPayment();
-        formPage.setCard(approvedCard);
+        formPage.setCard(DataGenerator.generateApprovedCard());
         formPage.setCardMonth(DataGenerator.generateMonth());
         formPage.setCardYear(DataGenerator.generateYear());
         formPage.setCardCVC(DataGenerator.generateCVC());
@@ -291,7 +284,7 @@ public class UITest {
     @Test
     void shouldTestEmptyCVCInPayment() {
         formPage.buyOnPayment();
-        formPage.setCard(approvedCard);
+        formPage.setCard(DataGenerator.generateApprovedCard());
         formPage.setCardMonth(DataGenerator.generateMonth());
         formPage.setCardYear(DataGenerator.generateYear());
         formPage.setCardOwner(DataGenerator.generateName());
@@ -307,7 +300,7 @@ public class UITest {
         long countPaymentStart = SQLHelper.getRecordsCountFromPaymentEntity();
 
         formPage.buyOnPayment();
-        formPage.setCard(approvedCard);
+        formPage.setCard(DataGenerator.generateApprovedCard());
         formPage.setCardMonth(DataGenerator.generateMonth());
         formPage.setCardYear(DataGenerator.generateYear());
         formPage.setCardOwner(DataGenerator.generateName());
@@ -325,7 +318,7 @@ public class UITest {
     @Test
     void shouldTestBePassedInCreditByApprovedCard() {
         formPage.buyOnCredit();
-        formPage.setCard(approvedCard);
+        formPage.setCard(DataGenerator.generateApprovedCard());
         formPage.setCardMonth(DataGenerator.generateMonth());
         formPage.setCardYear(DataGenerator.generateYear());
         formPage.setCardOwner(DataGenerator.generateName());
@@ -342,7 +335,7 @@ public class UITest {
     @Test
     void shouldTestBeFailedInCreditByDeclinedCard() {
         formPage.buyOnCredit();
-        formPage.setCard(declinedCard);
+        formPage.setCard(DataGenerator.generateDeclinedCard());
         formPage.setCardMonth(DataGenerator.generateMonth());
         formPage.setCardYear(DataGenerator.generateYear());
         formPage.setCardOwner(DataGenerator.generateName());
@@ -359,7 +352,7 @@ public class UITest {
     @Test
     void shouldTestWrongCardNumberInCredit() {
         formPage.buyOnCredit();
-        formPage.setWrongCardNumber(approvedCard);
+        formPage.setWrongCardNumber(DataGenerator.generateApprovedCard());
         formPage.setCardMonth(DataGenerator.generateMonth());
         formPage.setCardYear(DataGenerator.generateYear());
         formPage.setCardOwner(DataGenerator.generateName());
@@ -391,7 +384,7 @@ public class UITest {
     @Test
     void shouldTestWrongCardMonthDateInCredit() {
         formPage.buyOnCredit();
-        formPage.setCard(approvedCard);
+        formPage.setCard(DataGenerator.generateApprovedCard());
         formPage.setCardMonth(DataGenerator.generateWrongMonth());
         formPage.setCardYear(DataGenerator.generateCurrentYear());
         formPage.setCardOwner(DataGenerator.generateName());
@@ -406,7 +399,7 @@ public class UITest {
     @Test
     void shouldTestWrongCardYearDateInCredit() {
         formPage.buyOnCredit();
-        formPage.setCard(approvedCard);
+        formPage.setCard(DataGenerator.generateApprovedCard());
         formPage.setCardMonth(DataGenerator.generateMonth());
         formPage.setCardYear(DataGenerator.generateWrongYear());
         formPage.setCardOwner(DataGenerator.generateName());
@@ -421,7 +414,7 @@ public class UITest {
     @Test
     void shouldTestNameWithoutSurnameInCredit() {
         formPage.buyOnCredit();
-        formPage.setCard(approvedCard);
+        formPage.setCard(DataGenerator.generateApprovedCard());
         formPage.setCardMonth(DataGenerator.generateMonth());
         formPage.setCardYear(DataGenerator.generateYear());
         formPage.setCardOwner(DataGenerator.generateNameWithoutSurname());
@@ -436,7 +429,7 @@ public class UITest {
     @Test
     void shouldTestNameWithOneCharacterInCredit() {
         formPage.buyOnCredit();
-        formPage.setCard(approvedCard);
+        formPage.setCard(DataGenerator.generateApprovedCard());
         formPage.setCardMonth(DataGenerator.generateMonth());
         formPage.setCardYear(DataGenerator.generateYear());
         formPage.setCardOwner(DataGenerator.generateNameWithOneCharacter());
@@ -451,7 +444,7 @@ public class UITest {
     @Test
     void shouldTestNameWithNumbersInCredit() {
         formPage.buyOnCredit();
-        formPage.setCard(approvedCard);
+        formPage.setCard(DataGenerator.generateApprovedCard());
         formPage.setCardMonth(DataGenerator.generateMonth());
         formPage.setCardYear(DataGenerator.generateYear());
         formPage.setCardOwner(DataGenerator.generateNameWithNumbers());
@@ -466,7 +459,7 @@ public class UITest {
     @Test
     void shouldTestNameWithSpecialSymbolsInCredit() {
         formPage.buyOnCredit();
-        formPage.setCard(approvedCard);
+        formPage.setCard(DataGenerator.generateApprovedCard());
         formPage.setCardMonth(DataGenerator.generateMonth());
         formPage.setCardYear(DataGenerator.generateYear());
         formPage.setCardOwner(DataGenerator.generateNameWithSpecialSymbols());
@@ -481,7 +474,7 @@ public class UITest {
     @Test
     void shouldTestNameInRussianInCredit() {
         formPage.buyOnCredit();
-        formPage.setCard(approvedCard);
+        formPage.setCard(DataGenerator.generateApprovedCard());
         formPage.setCardMonth(DataGenerator.generateMonth());
         formPage.setCardYear(DataGenerator.generateYear());
         formPage.setCardOwner(DataGenerator.generateName());
@@ -499,7 +492,7 @@ public class UITest {
     @Test
     void shouldTestWrongCVCInCredit() {
         formPage.buyOnCredit();
-        formPage.setCard(approvedCard);
+        formPage.setCard(DataGenerator.generateApprovedCard());
         formPage.setCardMonth(DataGenerator.generateMonth());
         formPage.setCardYear(DataGenerator.generateYear());
         formPage.setCardOwner(DataGenerator.generateName());
@@ -538,7 +531,7 @@ public class UITest {
     @Test
     void shouldTestEmptyCardMonthDateInCredit() {
         formPage.buyOnCredit();
-        formPage.setCard(approvedCard);
+        formPage.setCard(DataGenerator.generateApprovedCard());
         formPage.setCardYear(DataGenerator.generateYear());
         formPage.setCardOwner(DataGenerator.generateName());
         formPage.setCardCVC(DataGenerator.generateCVC());
@@ -552,7 +545,7 @@ public class UITest {
     @Test
     void shouldTestEmptyCardYearDateInCredit() {
         formPage.buyOnCredit();
-        formPage.setCard(approvedCard);
+        formPage.setCard(DataGenerator.generateApprovedCard());
         formPage.setCardMonth(DataGenerator.generateMonth());
         formPage.setCardOwner(DataGenerator.generateName());
         formPage.setCardCVC(DataGenerator.generateCVC());
@@ -566,7 +559,7 @@ public class UITest {
     @Test
     void shouldTestEmptyNameInCredit() {
         formPage.buyOnCredit();
-        formPage.setCard(approvedCard);
+        formPage.setCard(DataGenerator.generateApprovedCard());
         formPage.setCardMonth(DataGenerator.generateMonth());
         formPage.setCardYear(DataGenerator.generateYear());
         formPage.setCardCVC(DataGenerator.generateCVC());
@@ -580,7 +573,7 @@ public class UITest {
     @Test
     void shouldTestEmptyCVCInCredit() {
         formPage.buyOnCredit();
-        formPage.setCard(approvedCard);
+        formPage.setCard(DataGenerator.generateApprovedCard());
         formPage.setCardMonth(DataGenerator.generateMonth());
         formPage.setCardYear(DataGenerator.generateYear());
         formPage.setCardOwner(DataGenerator.generateName());
@@ -596,7 +589,7 @@ public class UITest {
         long countCreditStart = SQLHelper.getRecordsCountFromOrderEntity();
 
         formPage.buyOnCredit();
-        formPage.setCard(approvedCard);
+        formPage.setCard(DataGenerator.generateApprovedCard());
         formPage.setCardMonth(DataGenerator.generateMonth());
         formPage.setCardYear(DataGenerator.generateYear());
         formPage.setCardOwner(DataGenerator.generateName());

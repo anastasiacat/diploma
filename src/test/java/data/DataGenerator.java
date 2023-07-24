@@ -1,6 +1,10 @@
 package data;
 
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Random;
+
+import static java.lang.String.valueOf;
 
 public class DataGenerator {
     private DataGenerator() {
@@ -10,6 +14,24 @@ public class DataGenerator {
         var card = new String[]{"4444 4444 4444 4440", "4444 4444 4444 4443", "4444 4444 4444 4444", "4444 4444 4444 4445", "4444 4444 4444 4446",
                 "4444 4444 4444 4447", "4444 4444 4444 4448", "4444 4444 4444 4449"};
         return card[new Random().nextInt(card.length)];
+    }
+
+    public static String generateApprovedCard() {
+        var card = new String[]{"4444 4444 4444 4441"};
+        return card[new Random().nextInt(card.length)];
+    }
+
+    public static String generateDeclinedCard() {
+        var card = new String[]{"4444 4444 4444 4442"};
+        return card[new Random().nextInt(card.length)];
+    }
+
+    public static String generateApprovedStatus() {
+        return "{\"status\":\"APPROVED\"}";
+    }
+
+    public static String generateDeclinedStatus() {
+        return "{\"status\":\"DECLINED\"}";
     }
 
     public static String generateName() {
@@ -56,22 +78,50 @@ public class DataGenerator {
     }
 
     public static String generateWrongMonth() {
-        var month = new String[]{"01", "02", "03", "04", "05", "06"};
+        Calendar prevMonth = Calendar.getInstance();
+        Calendar prevMonth1 = Calendar.getInstance();
+        Calendar prevMonth2 = Calendar.getInstance();
+        prevMonth.add(Calendar.MONTH, -1);
+        String month0 = "0" + valueOf(prevMonth.get(Calendar.MONTH));
+        prevMonth1.add(Calendar.MONTH, -2);
+        String month1 = "0" + valueOf(prevMonth1.get(Calendar.MONTH));
+        prevMonth2.add(Calendar.MONTH, -3);
+        String month2 = "0" + valueOf(prevMonth2.get(Calendar.MONTH));
+        var month = new String[]{month0, month1, month2};
         return month[new Random().nextInt(month.length)];
     }
 
     public static String generateYear() {
-        var year = new String[]{"24", "25", "26"};
+        Calendar prevYear = Calendar.getInstance();
+        Calendar prevYear1 = Calendar.getInstance();
+        Calendar prevYear2 = Calendar.getInstance();
+        prevYear.add(Calendar.YEAR, 1);
+        String year0 = valueOf(prevYear.get(Calendar.YEAR)).substring(2);
+        prevYear1.add(Calendar.YEAR, 2);
+        String year1 = valueOf(prevYear1.get(Calendar.YEAR)).substring(2);
+        prevYear2.add(Calendar.YEAR, 3);
+        String year2 = valueOf(prevYear2.get(Calendar.YEAR)).substring(2);
+        var year = new String[]{year0, year1, year2};
         return year[new Random().nextInt(year.length)];
     }
 
     public static String generateWrongYear() {
-        var year = new String[]{"20", "21", "22"};
+        Calendar prevYear = Calendar.getInstance();
+        Calendar prevYear1 = Calendar.getInstance();
+        Calendar prevYear2 = Calendar.getInstance();
+        prevYear.add(Calendar.YEAR, -1);
+        String year0 = valueOf(prevYear.get(Calendar.YEAR)).substring(2);
+        prevYear1.add(Calendar.YEAR, -2);
+        String year1 = valueOf(prevYear1.get(Calendar.YEAR)).substring(2);
+        prevYear2.add(Calendar.YEAR, -3);
+        String year2 = valueOf(prevYear2.get(Calendar.YEAR)).substring(2);
+        var year = new String[]{year0, year1, year2};
         return year[new Random().nextInt(year.length)];
     }
 
     public static String generateCurrentYear() {
-        var year = new String[]{"23"};
+        String currentYear = valueOf(LocalDate.now().getYear()).substring(2);
+        var year = new String[]{currentYear};
         return year[new Random().nextInt(year.length)];
     }
 

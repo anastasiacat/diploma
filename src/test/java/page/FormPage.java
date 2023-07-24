@@ -7,14 +7,15 @@ import java.time.Duration;
 import static com.codeborne.selenide.Selenide.*;
 
 public class FormPage {
+    private static String url = System.getProperty("app.url");
 
     public void buyOnPayment() {
-        open("http://localhost:8080/");
+        open(url);
         $x("/html/body/div/div/button[1]").click();
     }
 
     public void buyOnCredit() {
-        open("http://localhost:8080/");
+        open(url);
         $x("/html/body/div/div/button[2]").click();
     }
 
