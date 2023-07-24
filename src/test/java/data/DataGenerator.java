@@ -1,9 +1,9 @@
 package data;
 
-import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Random;
 
+import static java.lang.Integer.parseInt;
 import static java.lang.String.valueOf;
 
 public class DataGenerator {
@@ -77,18 +77,26 @@ public class DataGenerator {
         return month[new Random().nextInt(month.length)];
     }
 
-    public static String generateWrongMonth() {
+    public static Calendar generateWrongDate() {
         Calendar prevMonth = Calendar.getInstance();
-        Calendar prevMonth1 = Calendar.getInstance();
-        Calendar prevMonth2 = Calendar.getInstance();
         prevMonth.add(Calendar.MONTH, -1);
-        String month0 = "0" + valueOf(prevMonth.get(Calendar.MONTH));
-        prevMonth1.add(Calendar.MONTH, -2);
-        String month1 = "0" + valueOf(prevMonth1.get(Calendar.MONTH));
-        prevMonth2.add(Calendar.MONTH, -3);
-        String month2 = "0" + valueOf(prevMonth2.get(Calendar.MONTH));
-        var month = new String[]{month0, month1, month2};
-        return month[new Random().nextInt(month.length)];
+        return prevMonth;
+    }
+
+    public static String generateWrongDateMonth() {
+        var wrongDate = generateWrongDate();
+        String month = valueOf(wrongDate.get(Calendar.MONTH));
+        int monthInt = parseInt(month) + 1;
+        if (monthInt == 1 || monthInt == 2 || monthInt == 3 || monthInt == 4 || monthInt == 5 || monthInt == 6 ||
+                monthInt == 7 || monthInt == 8 || monthInt == 9) {
+            month = "0" + monthInt;
+        }
+        return month;
+    }
+
+    public static String generateWrongDateYear() {
+        var wrongDate = generateWrongDate();
+        return valueOf(wrongDate.get(Calendar.YEAR)).substring(2);
     }
 
     public static String generateYear() {
@@ -116,12 +124,6 @@ public class DataGenerator {
         prevYear2.add(Calendar.YEAR, -3);
         String year2 = valueOf(prevYear2.get(Calendar.YEAR)).substring(2);
         var year = new String[]{year0, year1, year2};
-        return year[new Random().nextInt(year.length)];
-    }
-
-    public static String generateCurrentYear() {
-        String currentYear = valueOf(LocalDate.now().getYear()).substring(2);
-        var year = new String[]{currentYear};
         return year[new Random().nextInt(year.length)];
     }
 

@@ -8,6 +8,10 @@ import org.junit.jupiter.api.*;
 
 import io.qameta.allure.selenide.AllureSelenide;
 
+import java.util.Calendar;
+
+import static java.lang.String.valueOf;
+
 public class UITest {
     private FormPage formPage;
 
@@ -98,8 +102,8 @@ public class UITest {
     void shouldTestWrongCardMonthDateInPayment() {
         formPage.buyOnPayment();
         formPage.setCard(DataGenerator.generateApprovedCard());
-        formPage.setCardMonth(DataGenerator.generateWrongMonth());
-        formPage.setCardYear(DataGenerator.generateCurrentYear());
+        formPage.setCardMonth(DataGenerator.generateWrongDateMonth());
+        formPage.setCardYear(DataGenerator.generateWrongDateYear());
         formPage.setCardOwner(DataGenerator.generateName());
         formPage.setCardCVC(DataGenerator.generateCVC());
         formPage.pushContinueButton();
@@ -329,7 +333,6 @@ public class UITest {
         String expected = "Операция одобрена Банком.";
         String actual = formPage.actualMessage();
         Assertions.assertEquals(expected, actual);
-
     }
 
     @Test
@@ -346,7 +349,6 @@ public class UITest {
         String expected = "Ошибка! Банк отказал в проведении операции.";
         String actual = formPage.actualMessage();
         Assertions.assertEquals(expected, actual);
-
     }
 
     @Test
@@ -378,15 +380,14 @@ public class UITest {
         String expected = "Ошибка! Банк отказал в проведении операции.";
         String actual = formPage.actualMessage();
         Assertions.assertEquals(expected, actual);
-
     }
 
     @Test
     void shouldTestWrongCardMonthDateInCredit() {
         formPage.buyOnCredit();
         formPage.setCard(DataGenerator.generateApprovedCard());
-        formPage.setCardMonth(DataGenerator.generateWrongMonth());
-        formPage.setCardYear(DataGenerator.generateCurrentYear());
+        formPage.setCardMonth(DataGenerator.generateWrongDateMonth());
+        formPage.setCardYear(DataGenerator.generateWrongDateYear());
         formPage.setCardOwner(DataGenerator.generateName());
         formPage.setCardCVC(DataGenerator.generateCVC());
         formPage.pushContinueButton();
@@ -486,7 +487,6 @@ public class UITest {
         String expected = "Операция одобрена Банком.";
         String actual = formPage.actualMessage();
         Assertions.assertEquals(expected, actual);
-
     }
 
     @Test
